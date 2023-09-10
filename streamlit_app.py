@@ -1,38 +1,29 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
-import altair as alt
+from datetime import time, datetime
 
-#fig, ax = plt.subplots(2, 2)
-#ax[0][0].plot(np.arange(10), np.random.randn(10))
-
-st.header('st.write')
+st.header('st.slider')
 
 # Example 1
-st.write('Hello, *World!* :sunglasses:')
+st.subheader('Slider')
+
+age = st.slider('How old are you boy?', 0, 130, 25)
+st.write("I'm", age, 'years old, boy.')
 
 # Example 2
-st.write(1234)
+st.subheader('Range slider')
 
-# Example 3
-df = pd.DataFrame({
-    'first_column': [1, 2, 3, 4],
-    'second_column': [10, 20, 30, 40]
-})
+values = st.slider(
+    'Dude, just select a range of values!',
+    0.0, 100.0, (25.0, 75.0))
 
-st.write(df)
+st.write('The shit you selected:', str(values[0]), ' - ', str(values[1]))
 
 # Example 4
-st.write('Below is a dataframe: :poop:', df, 'Above is a dataframe.')
-
-# Example 5
-df2 = pd.DataFrame(
-    np.random.randn(200, 3),
-    columns=['a', 'b', 'c']
+st.subheader('Datetime slider')
+start_time = st.slider(
+    'When the fuck do we start?',
+    value=datetime(2043, 1, 1, 9, 30),
+    format="DD/MM/YY - hh:mm"
 )
 
-c = alt.Chart(df2).mark_circle().encode(
-    x='a', y='b', size='c', color='c', tooltip=['a', 'b', 'c']
-)
-
-st.write(c)
+st.write("Seriously, we start at", start_time, "??? :poop:")
